@@ -42,6 +42,15 @@ class app:
                           "</h1><p>App id: " + str(self) + "<p></body></html>")
 
 
+class aleat(app):
+    def process (self, parsedRequest):
+        import random
+        num = random.randint(1,100000000000)
+        num = "/aleat" + str(num)
+        return ("200 OK", "<html><body><h1>" +
+                          "<a href=" + num + ">Dame mas</a>"
+                          "</h1><p>App id: " + str(self) + "<p></body></html>")
+
 class webApp:
     """Root of a hierarchy of classes implementing web applications
 
@@ -101,5 +110,7 @@ class webApp:
 if __name__ == "__main__":
     anApp = app()
     otherApp = app()
+    aleatApp = aleat()
     testWebApp = webApp("localhost", 1234, {'/app': anApp,
-                                            '/other': otherApp})
+                                            '/other': otherApp,
+                                            '/aleat': aleatApp})
